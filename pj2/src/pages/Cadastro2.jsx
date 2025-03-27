@@ -139,7 +139,7 @@ function Cadastro() {
         <p className="mt-4 text-center text-sm text-gray-500">
           Já tem uma conta?{" "}
           <Link to="/" className="text-indigo-600 hover:underline">
-            Voltar para Home
+            Voltar para Login
           </Link>
         </p>
       </div>
