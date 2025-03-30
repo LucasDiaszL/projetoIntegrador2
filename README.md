@@ -15,8 +15,8 @@
 <ul>
     <li><strong>Front-end</strong>: React Native</li>
     <li><strong>Back-end</strong>: Node.js com Express</li>
-    <li><strong>Banco de Dados</strong>: Firebase / MongoDB</li>
-    <li><strong>Autenticação</strong>: Firebase Authentication</li>
+    <li><strong>Banco de Dados</strong>: Supabase</li>
+    <li><strong>Autenticação</strong>: Supabase Authentication</li>
 </ul>
 
 <h2>📲 Como Instalar e Executar</h2>
