@@ -3,16 +3,14 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Cadastro from "./pages/Cadastro2";
 import Navbar from "./components/Navbar";
+import Home2 from "./components/home";
 
 function AppRoutes() {
   return (
     <Router>
-      <Navbar/>
-      <Routes>
-        <Route path="/" element={< Home/>} />  {/* Login como página inicial */}
-        <Route path="/Login" element={<Login/>} />
-        <Route path="/cadastro" element={<Cadastro />} />
-      </Routes>
+      <Navbar />
+      <Home2></Home2>
+      
     </Router>
   );
 }

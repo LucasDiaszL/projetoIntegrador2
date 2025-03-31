@@ -1,10 +1,17 @@
 @import "tailwindcss";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
 
-@theme{
-    --color-primary: #494D7E;
-    --color-secundary: #464555;
-    --color-third: #AAA9BC;
-    --color-fourth: #604f1f;
-    --color-fifth:#95804D;
-    --color-neutralSilver:#F5f7fa;
+@theme {
+  --color-primary: #494d7e;
+  --color-secundary: #464555;
+  --color-third: #aaa9bc;
+  --color-fourth: #604f1f;
+  --color-fifth: #95804d;
+  --color-neutralSilver: #f5f7fa;
+  --color-neutralDgray: #4d4d4d;
+}
+
+header{
+  z-index: 10001 !important;
 }
