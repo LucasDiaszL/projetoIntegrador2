@@ -49,7 +49,7 @@ const Navbar = () => {
       >
         <div className="flex justify-between items-center text-base gap-8">
           <a
-            href=""
+            href="/"
             className="text-2xl font-semibold flex items-center space-x-3"
           >
             <img

@@ -8,8 +8,11 @@ function AppRoutes() {
   return (
     <Router>
       <Navbar />
-      <Home2></Home2>
-      
+      <Routes>
+        <Route path="/" element={<Home2 />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+      </Routes>
     </Router>
   );
 }
