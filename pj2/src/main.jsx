@@ -3,9 +3,6 @@ import ReactDOM from "react-dom/client";
 import AppRoutes from "./routes";
 import "./index.css"; // Mantém o Tailwind
 
-
-
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AppRoutes />

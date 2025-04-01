@@ -90,7 +90,7 @@ const Navbar = () => {
               onClick={() => navigate("/cadastro")}
               className="bg-[var(--color-primary)] text-white py-2 px-4 transition-all duration-300 rounded hover:bg-neutral-500"
             >
-              Sing up
+              Sign up
             </button>
           </div>
 
