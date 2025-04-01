@@ -30,7 +30,7 @@ const Navbar = () => {
   });
 
   const navItems = [
-    { link: "Home", path: "home" },
+    { link: "Home", path: "/" },
     { link: "Service", path: "service" },
     { link: "About", path: "about" },
     { link: "Hire", path: "hire" },

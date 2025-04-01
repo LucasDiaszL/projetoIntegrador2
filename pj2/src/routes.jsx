@@ -1,13 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro2";
-import Navbar from "./components/Navbar";
-import Home2 from "./components/home";
+import Home2 from "./pages/home";
 
 function AppRoutes() {
   return (
     <Router>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home2 />} />
         <Route path="/login" element={<Login />} />
