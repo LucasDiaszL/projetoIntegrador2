@@ -2,6 +2,7 @@ import React from "react";
 import { Carousel } from "flowbite-react";
 import banner1 from "../assets/Banner2.png";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Home2 = () => {
   return (
@@ -55,6 +56,7 @@ const Home2 = () => {
           </Carousel>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

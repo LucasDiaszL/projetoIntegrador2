@@ -1,49 +1,58 @@
 import React from "react";
+import Logo from "../assets/caixa-de-ferramentas.png";
 
 const Footer = () => {
-    const footerSections = [
-        {
-            title: "Use cases",
-            links: ["UI design", "UX design", "Wireframing", "Diagramming", "Brainstorming", "Online whiteboard", "Team collaboration"]
-        },
-        {
-            title: "Explore",
-            links: ["Design", "Prototyping", "Development features", "Design systems", "Collaboration features", "Design process", "FigJam"]
-        },
-        {
-            title: "Resources",
-            links: ["Blog", "Best practices", "Colors", "Color wheel", "Support", "Developers", "Resource library"]
-        }
-    ];
+  const footerSections = [
+    {
+      title: "Use cases",
+      links: ["UI design", "UX design", "Wireframing", "Diagramming", "Brainstorming", "Online whiteboard", "Team collaboration"]
+    },
+    {
+      title: "Explore",
+      links: ["Design", "Prototyping", "Development features", "Design systems", "Collaboration features", "Design process", "FigJam"]
+    },
+    {
+      title: "Resources",
+      links: ["Blog", "Best practices", "Colors", "Color wheel", "Support", "Developers", "Resource library"]
+    }
+  ];
 
-    return (
-        <footer className="w-full fixed bottom-0 left-0 flex flex-col md:flex-row justify-between items-center p-6 bg-white">
-            <div className="flex items-center mb-4 md:mb-0">
-                <img
-                    src="https://storage.googleapis.com/a1aa/image/ivujRWm4vSIg4GSQ8AMfX1Ao8XyGaPyFlmnZEDp_hnY.jpg"
-                    alt="Logo"
-                    className="w-6 h-6 mr-4"
-                />
-                <i className="fab fa-x text-2xl mr-4"></i>
-                <i className="fab fa-instagram text-2xl mr-4"></i>
-                <i className="fab fa-youtube text-2xl mr-4"></i>
-                <i className="fab fa-linkedin text-2xl"></i>
-            </div>
-            <div className="flex flex-col md:flex-row justify-between w-full md:max-w-4xl">
-                {footerSections.map((section, index) => (
-                    <div key={index} className="mb-4 md:mb-0 md:mr-16">
-                        <h3 className="font-bold text-lg text-black mb-2">{section.title}</h3>
-                        <ul>
-                            {section.links.map((link, idx) => (
-                                <li key={idx} className="mb-2">
-                                    <a href="#" className="text-black text-sm">{link}</a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                ))}
-            </div>
-        </footer>
-    );
+  return (
+    <footer className="container mx-auto py-10 px-4 border-t mt-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
+        {/* Logo e direitos autorais */}
+        <div className="mb-3">
+          <a href="/" className="flex items-center mb-3 text-gray-800 no-underline">
+            <img
+              src={Logo}
+              alt="Logo"
+              className="w-10 h-10 mr-2"
+            />
+          </a>
+          <p className="text-gray-500">&copy; 2025</p>
+        </div>
+
+        {/* Espaço vazio para manter alinhamento */}
+        <div className="mb-3" />
+
+        {/* Seções dinâmicas */}
+        {footerSections.map((section, idx) => (
+          <div key={idx} className="mb-3">
+            <h5 className="text-lg font-semibold text-gray-900 mb-3">{section.title}</h5>
+            <ul className="space-y-2">
+              {section.links.map((link, index) => (
+                <li key={index}>
+                  <a href="#" className="text-sm text-gray-500 hover:text-gray-800">
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </footer>
+  );
 };
+
 export default Footer;

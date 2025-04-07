@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function Login() {
   const navigate = useNavigate();
@@ -61,6 +62,7 @@ function Login() {
           </p>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
