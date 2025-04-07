@@ -26,7 +26,7 @@ const Footer = () => {
             <img
               src={Logo}
               alt="Logo"
-              className="w-10 h-10 mr-2"
+              className="w-13 h-13 mr-2"
             />
           </a>
           <p className="text-gray-500">&copy; 2025</p>
@@ -42,7 +42,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {section.links.map((link, index) => (
                 <li key={index}>
-                  <a href="#" className="text-sm text-gray-500 hover:text-gray-800">
+                  <a href="#" className="text-sm text-gray-500 hover:text-[var(--color-primary)]">
                     {link}
                   </a>
                 </li>

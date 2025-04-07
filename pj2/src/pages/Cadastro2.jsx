@@ -26,7 +26,7 @@ function Cadastro() {
   return (
     <>
       <Navbar />
-      <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-[#EFEEF9]">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className=" mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
             Cadastro
@@ -46,7 +46,7 @@ function Cadastro() {
                 value={formData.nome}
                 onChange={handleChange}
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline outline-gray-300 placeholder-gray-400 focus:outline-[#494D7E]"
               />
             </div>
 
@@ -61,7 +61,7 @@ function Cadastro() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline outline-gray-300 placeholder-gray-400 focus:outline-[#494D7E]"
               />
             </div>
 
@@ -76,7 +76,7 @@ function Cadastro() {
                 value={formData.senha}
                 onChange={handleChange}
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline outline-gray-300 placeholder-gray-400 focus:outline-[#494D7E]"
               />
             </div>
 
@@ -91,7 +91,7 @@ function Cadastro() {
                 value={formData.endereco}
                 onChange={handleChange}
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline outline-gray-300 placeholder-gray-400 focus:outline-[#494D7E]"
               />
             </div>
 
@@ -108,7 +108,7 @@ function Cadastro() {
                 required
                 maxLength="14"
                 placeholder="000.000.000-00"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline outline-gray-300 placeholder-gray-400 focus:outline-[#494D7E]"
               />
             </div>
 
@@ -125,7 +125,7 @@ function Cadastro() {
                 required
                 maxLength="15"
                 placeholder="(00) 00000-0000"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline outline-gray-300 placeholder-gray-400 focus:outline-[#494D7E]"
               />
             </div>
 
@@ -133,7 +133,7 @@ function Cadastro() {
             <div>
               <button
                 type="submit"
-                className="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold hover:bg-indigo-700 transition"
+                className="w-full bg-[#494D7E] text-white px-3 py-1.5 rounded-md hover:bg-[#2B3396] cursor-pointer"
               >
                 Cadastrar
               </button>
