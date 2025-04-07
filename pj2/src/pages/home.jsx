@@ -2,6 +2,7 @@ import React from "react";
 import { Carousel } from "flowbite-react";
 import banner1 from "../assets/Banner2.png";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Home2 = () => {
   return (
@@ -20,7 +21,7 @@ const Home2 = () => {
                   Facilitamos sua vida<br></br>
                   <span className="text-[var(--color-primary)]  leading-snug ">com serviços rápidos e eficientes.</span>
                 </h1>
-                <p  classname=" text-[var(--color-third)] text-base mb-8" >Reformas, tecnologia, consultoria e muito mais.</p><br></br>
+                <p className=" text-[var(--color-third)] text-base mb-8" >Reformas, tecnologia, consultoria e muito mais.</p><br></br>
                 <button className="btn-primary">Register</button>
               </div>
             </div>
@@ -34,7 +35,7 @@ const Home2 = () => {
                   Facilitamos sua vida<br></br>
                   <span className="text-[var(--color-primary)]  leading-snug ">com serviços rápidos e eficientes.</span>
                 </h1>
-                <p  classname=" text-[var(--color-third)] text-base mb-8" >Reformas, tecnologia, consultoria e muito mais.</p><br></br>
+                <p className=" text-[var(--color-third)] text-base mb-8" >Reformas, tecnologia, consultoria e muito mais.</p><br></br>
                 <button className="btn-primary">Register</button>
               </div>
             </div>
@@ -48,13 +49,14 @@ const Home2 = () => {
                   Facilitamos sua vida<br></br>
                   <span className="text-[var(--color-primary)]  leading-snug ">com serviços rápidos e eficientes.</span>
                 </h1>
-                <p  classname=" text-[var(--color-third)] text-base mb-8" >Reformas, tecnologia, consultoria e muito mais.</p><br></br>
+                <p className=" text-[var(--color-third)] text-base mb-8" >Reformas, tecnologia, consultoria e muito mais.</p><br></br>
                 <button className="btn-primary">Register</button>
               </div>
             </div>
           </Carousel>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

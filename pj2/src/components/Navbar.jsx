@@ -39,7 +39,7 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="w-full bg-white md:bg-transparent fixed top-0 left-0 right-0">
+    <header className="w-full bg-white md:bg-transparent top-0 left-0 right-0">
       <nav
         className={`py-4 lg:px-14 px-4 ${
           isSticky
@@ -88,7 +88,7 @@ const Navbar = () => {
             </a>
             <button
               onClick={() => navigate("/cadastro")}
-              className="bg-[var(--color-primary)] text-white py-2 px-4 transition-all duration-300 rounded hover:bg-neutral-500"
+              className="bg-[var(--color-primary)] text-white py-2 px-4 transition-all duration-300 rounded cursor-pointer hover:bg-neutral-500"
             >
               Sign up
             </button>
