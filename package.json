@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@hookform/resolvers": "^5.0.1",
+    "@supabase/supabase-js": "^2.49.4",
+    "bcryptjs": "^3.0.2",
+    "react-hook-form": "^7.55.0",
+    "supabase": "^2.20.5",
+    "yup": "^1.6.1"
+  }
+}
