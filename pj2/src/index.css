@@ -19,3 +19,8 @@ nav ul {
 .btn-primary{
   @apply px-7 py-2 bg-[var(--color-primary)] text-white rounded hover:bg-neutralDgray transition-all duration-300 hover:-translate-y-4;
 }
+
+
+.icon{
+  cursor: pointer;
+}
