@@ -123,7 +123,7 @@ function Cadastro() {
                   ? "bg-green-100 text-green-700"
                   : "bg-red-100 text-red-700"
                 }`}
-            >
+                >
               {message.text}
             </div>
           )}
@@ -136,9 +136,10 @@ function Cadastro() {
               </label>
               <input
                 type="text"
+                placeholder="Digite seu nome completo"
                 {...register("nome")}
                 className={`block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline ${errors.nome ? "outline-red-500" : "outline-gray-300"
-                  } placeholder-gray-400 focus:outline-[#494D7E]`}
+                } placeholder-gray-400 focus:outline-[#494D7E]`}
               />
               {errors.nome && (
                 <p className="mt-1 text-sm text-red-600">{errors.nome.message}</p>
@@ -152,6 +153,7 @@ function Cadastro() {
               </label>
               <input
                 type="email"
+                placeholder="digiteseuemail@gmail.com"
                 {...register("email")}
                 className={`block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline ${errors.email ? "outline-red-500" : "outline-gray-300"
                   } placeholder-gray-400 focus:outline-[#494D7E]`}
@@ -168,6 +170,7 @@ function Cadastro() {
               </label>
               <input
                 type="password"
+                placeholder="Digite uma senha com no mínimo 8 caracteres"
                 {...register("senha")}
                 className={`block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline ${errors.senha ? "outline-red-500" : "outline-gray-300"
                   } placeholder-gray-400 focus:outline-[#494D7E]`}
@@ -184,6 +187,7 @@ function Cadastro() {
               </label>
               <input
                 type="text"
+                placeholder="Digite seu endereço completo"
                 {...register("endereco")}
                 className={`block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline ${errors.endereco ? "outline-red-500" : "outline-gray-300"
                   } placeholder-gray-400 focus:outline-[#494D7E]`}

@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import SearchDiv from "../components/SearchDiv";
+import Footer from "../components/Footer";
 
 
 const Servico = () => {
@@ -8,7 +9,7 @@ const Servico = () => {
     <>
         <Navbar/>
         <SearchDiv/>
-        
+        <Footer/>
     </>
   )
 };
