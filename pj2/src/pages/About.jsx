@@ -9,7 +9,7 @@ const About = () => {
       <div className="max-w-4xl mx-auto px-4 py-12 text-center">
         <h1 className="text-4xl font-bold mb-6">Sobre Nós</h1>
         <p className="text-lg text-gray-700 mb-4">
-          Nosso site é uma plataforma inovadora que conecta pessoas a prestadores de serviços de forma rápida, prática e segura — como um "iFood", mas para serviços em geral.
+          Nosso site é uma plataforma inovadora que conecta pessoas a prestadores de serviços de forma rápida, prática e segura.
         </p>
         <p className="text-lg text-gray-700 mb-4">
           Se você precisa de ajuda com tarefas como consertos domésticos, aulas particulares, assistência técnica, beleza, entre outros, aqui é o lugar certo para encontrar profissionais avaliados por outros usuários.
