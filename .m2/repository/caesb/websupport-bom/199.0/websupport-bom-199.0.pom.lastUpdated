@@ -1,7 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Apr 07 15:40:16 GMT-03:00 2025
-@default-maven-default-http-blocker-http\://0.0.0.0/.lastUpdated=1744051030816
-http\://0.0.0.0/.error=Could not transfer artifact caesb\:websupport-bom\:pom\:199.0 from/to maven-default-http-blocker (http\://0.0.0.0/)\: Blocked mirror for repositories\: [Caesb Public Group (http\://desenv.caesb/nexus/content/groups/public/, default, releases)]
-https\://desenv.caesb.df.gov.br/nexus/content/groups/public/.lastUpdated=1744051216050
-https\://repo.maven.apache.org/maven2/.error=
-https\://repo.maven.apache.org/maven2/.lastUpdated=1744051031556
