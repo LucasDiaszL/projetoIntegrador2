@@ -1,0 +1,488 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<prerequisites>
+		<maven>3.3.9</maven>
+	</prerequisites>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- ~~~~~~~~~~ INFORMATIONS ~~~~~~~~~~ -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+   
+	<groupId>caesb</groupId>
+	<artifactId>websupport-bom</artifactId>
+	<version>${revision}</version>                            <!--  <====== SUBSTITUIR AQUI -->
+	
+	<packaging>pom</packaging>
+	<name>websupport</name>
+	<description>Caesb Bill of Materials</description>
+	<url>https://desenv.caesb.df.gov.br/svn/prtd/bibliotecas/websupport-bom</url>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- ~~~~~~~~~~~ PROPERTIES ~~~~~~~~~~~ -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+   
+	<properties>
+	
+		<revision>206.3.1</revision> <!-- VERSÃO GLOBAL DOS PROJETOS -->
+	
+		<!-- Websupport -->
+		<websupport.version>${revision}</websupport.version>  
+		<springframework.version>4.2.9.RELEASE</springframework.version> <!--  <====== SUBSTITUIR AQUI -->	
+		<lucene.dir>lucene55</lucene.dir>	            <!--  <====== SUBSTITUIR AQUI -->	
+		
+		<!-- Java e charset -->
+		<jdk.version>1.7</jdk.version>
+		<maven.compiler.source>1.7</maven.compiler.source>
+    	<maven.compiler.target>1.7</maven.compiler.target>
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+		
+		<!-- Bibliotecas para relatórios (usadas no websupport-pom e nos projetos) -->
+		<jasperreports.version>6.4.3</jasperreports.version>
+		<jasperreports-fonts.version>6.0.0</jasperreports-fonts.version>
+		<groovy.version>2.4.5</groovy.version>		
+		
+		<!-- Configurações padrão do jetty nos projetos -->
+		<jetty.dataSource.initialSize>2</jetty.dataSource.initialSize>
+		<jetty.dataSource.maxActive>30</jetty.dataSource.maxActive>
+		<jetty.dataSource.maxIdle>2</jetty.dataSource.maxIdle>
+		<jetty.dataSource.maxWait>3000</jetty.dataSource.maxWait>
+		<jetty.port>8080</jetty.port>
+		
+		<!-- Configurações do hibernate -->
+		<hibernate.show_sql>false</hibernate.show_sql>
+		<hibernate.format.sql>true</hibernate.format.sql>
+		<hibernate.generate_statistics>false</hibernate.generate_statistics>
+		<hibernate.use_sql_comments>true</hibernate.use_sql_comments>				
+		<hibernate.dialect>org.hibernate.dialect.SQLServer2012Dialect</hibernate.dialect>
+		
+		<!-- Outras configurações -->
+		<log.level>INFO</log.level>	
+		<facelets.refreshPeriod>-1</facelets.refreshPeriod>
+
+		<!-- Versões de bibliotecas nos projetos -->
+		<cucumber.version>1.2.5</cucumber.version>
+		<assertj.version>2.9.0</assertj.version>
+		<junit.version>4.12</junit.version>
+		<servlet-api.version>2.5</servlet-api.version>
+		<jsp-api.version>2.1</jsp-api.version>
+
+		<!-- Plugins -->
+		<maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
+		<maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>
+		<maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
+		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+		<maven-dependency-plugin.version>3.0.1</maven-dependency-plugin.version>
+		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+		<maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
+		<maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
+		<maven-failsafe-plugin.version>2.20.1</maven-failsafe-plugin.version>
+		<maven-install-plugin.version>2.5.2</maven-install-plugin.version>
+		<maven-invoker-plugin.version>3.0.0</maven-invoker-plugin.version>
+		<maven-help-plugin.version>2.2</maven-help-plugin.version>
+		<maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
+		<maven-javadoc-plugin.version>3.0.0-M1</maven-javadoc-plugin.version>
+		<maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
+		<maven-shade-plugin.version>2.4.3</maven-shade-plugin.version>
+		<maven-site-plugin.version>3.6</maven-site-plugin.version>
+		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+		<maven-surefire-plugin.version>2.20.1</maven-surefire-plugin.version>
+		<maven-war-plugin.version>3.1.0</maven-war-plugin.version>
+		<build-helper-maven-plugin.version>1.7</build-helper-maven-plugin.version>
+		<axistools-maven-plugin.version>1.4</axistools-maven-plugin.version>
+		<jetty-maven-plugin.version>9.2.10.v20150310</jetty-maven-plugin.version>
+		<jasperreports-plugin.version>2.3</jasperreports-plugin.version>
+
+	</properties>
+	
+   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+   <!-- ~~~~~~~~~~~~~ SOURCE ~~~~~~~~~~~~~ -->
+   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+   
+	<scm>
+		<connection>scm:svn:https://desenv.caesb.df.gov.br/svn/prtd/bibliotecas/websupport-bom/trunk</connection>
+		<developerConnection>scm:svn:https://desenv.caesb.df.gov.br/svn/prtd/bibliotecas/websupport-bom/trunk</developerConnection>
+		<url>https://desenv.caesb.df.gov.br/svn/prtd/bibliotecas/websupport-bom</url>
+		<tag>HEAD</tag>
+	</scm>
+
+   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+   <!-- ~~~~~~~~~~~ DEVELOPERS ~~~~~~~~~~~ -->
+   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+   
+	<developers>
+		<developer>
+			<id>CAESB</id>
+			<name>Wagner Santos</name>
+			<email>Wagnergsantos@caesb.df.gov.br</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>America/Sao_Paulo</timezone>
+		</developer>
+	</developers>
+
+   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+   <!-- ~~~~~~~~~~ ORGANIZATION ~~~~~~~~~~ -->
+   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+   
+	<organization>
+		<name>CAESB</name>
+		<url>www.caesb.df.gov.br</url>
+	</organization>
+
+   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+   <!-- ~~~~~~~~~~ DEPENDENCIES ~~~~~~~~~~ -->
+   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+   
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>caesb</groupId>
+				<artifactId>websupport</artifactId>
+				<version>${websupport.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${servlet-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${jsp-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${springframework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>info.cukes</groupId>
+				<artifactId>cucumber-java</artifactId>
+				<version>${cucumber.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>info.cukes</groupId>
+				<artifactId>cucumber-spring</artifactId>
+				<version>${cucumber.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>info.cukes</groupId>
+				<artifactId>cucumber-junit</artifactId>
+				<version>${cucumber.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.assertj</groupId>
+				<artifactId>assertj-core</artifactId>
+				<version>${assertj.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- ~~~~~~~~~~~~~ BUILD ~~~~~~~~~~~~~~ -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<build>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>${maven-antrun-plugin.version}</version>
+					<configuration>
+						<target>
+							<copy todir="${app.diretorioJasper}">
+								<fileset dir="${basedir}/src/main/jasperreports">
+									<exclude name="*.jrxml" />
+									<exclude name="**/*.jrxml" />
+								</fileset>
+							</copy>
+						</target>
+					</configuration>
+					<executions>
+						<execution>
+							<id>package</id>
+							<goals>
+								<goal>run</goal>
+							</goals>
+							<phase>package</phase>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${maven-assembly-plugin.version}</version>
+					<configuration>
+						<recompressZippedFiles>false</recompressZippedFiles>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>${maven-clean-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+					<configuration>
+						<source>${jdk.version}</source>
+						<target>${jdk.version}</target>
+						<encoding>ISO-8859-1</encoding>
+						<useIncrementalCompilation>false</useIncrementalCompilation>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${maven-deploy-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>${maven-dependency-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>${maven-eclipse-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>${maven-enforcer-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>${maven-failsafe-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>${maven-install-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-invoker-plugin</artifactId>
+					<version>${maven-invoker-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-help-plugin</artifactId>
+					<version>${maven-help-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${maven-jar-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven-javadoc-plugin.version}</version>
+					<executions>
+						<execution>
+							<phase>compile</phase>
+							<goals>
+								<goal>aggregate</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<additionalJOptions>
+							<additionalJOption>-J-Dfile.encoding=ISO-8859-1</additionalJOption>
+						</additionalJOptions>
+						<doclet>CommentsDoclet</doclet>
+						<docletPath>${project.build.directory}/classes/doclet</docletPath>
+						<reportOutputDirectory>${project.build.outputDirectory}/META-INF</reportOutputDirectory>
+						<additionalparam>none</additionalparam>
+						<show>public</show>
+						<useStandardDocletOptions>false</useStandardDocletOptions>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${maven-resources-plugin.version}</version>
+					<configuration>
+						<encoding>ISO-8859-1</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>${maven-shade-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>${maven-site-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven-source-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven-surefire-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${maven-war-plugin.version}</version>
+					<configuration>
+						<warSourceDirectory>${basedir}/target/webapp</warSourceDirectory>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>${build-helper-maven-plugin.version}</version>
+					<executions>
+						<execution>
+							<phase>generate-resources</phase>
+							<goals>
+								<goal>add-resource</goal>
+							</goals>
+							<configuration>
+								<resources>
+									<resource>
+										<directory>src/main/webapp</directory>
+										<excludes>
+											<exclude>**/**</exclude>
+										</excludes>
+									</resource>
+								</resources>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>axistools-maven-plugin</artifactId>
+					<version>${axistools-maven-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>${jetty-maven-plugin.version}</version>
+					<configuration>
+						<webApp>
+							<contextPath>/${project.name}</contextPath>
+							<jettyEnvXml>target/classes/jetty-env.xml</jettyEnvXml>
+						</webApp>
+						<contextXml>target/classes/jetty-context.xml</contextXml>
+						<webAppSourceDirectory>target/webapp</webAppSourceDirectory>
+						<httpConnector>
+							<port>${jetty.port}</port>
+						</httpConnector>
+						<systemProperties>
+						<!-- https://wiki.eclipse.org/Jetty/Howto/International_Characters -->
+							<systemProperty> <!-- para MIME x-www-form-urlencoded -->
+								<name>org.eclipse.jetty.util.UrlEncoding.charset</name>
+								<value>ISO-8859-1</value>
+							</systemProperty>
+							<systemProperty> <!-- para demais casos -->
+								<name>org.eclipse.jetty.util.URI.charset</name>
+								<value>ISO-8859-1</value>
+							</systemProperty>
+						</systemProperties>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>com.alexnederlof</groupId>
+					<artifactId>jasperreports-plugin</artifactId>
+					<version>${jasperreports-plugin.version}</version>
+					<executions>
+						<execution>
+							<phase>package</phase>
+							<goals>
+								<goal>jasper</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+	                <!-- These are the default configurations: -->
+						<compiler>net.sf.jasperreports.compilers.JRGroovyCompiler</compiler>
+						<sourceDirectory>src/main/jasperreports</sourceDirectory>
+						<outputDirectory>${app.diretorioJasper}</outputDirectory>
+						<outputFileExt>.jasper</outputFileExt>
+						<xmlValidation>true</xmlValidation>
+						<verbose>false</verbose>
+						<numberOfThreads>4</numberOfThreads>
+						<failOnMissingSourceDirectory>true</failOnMissingSourceDirectory>
+						<sourceScanner>org.codehaus.plexus.compiler.util.scan.StaleSourceScanner</sourceScanner>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>net.sf.jasperreports</groupId>
+							<artifactId>jasperreports</artifactId>
+							<version>${jasperreports.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>net.sf.jasperreports</groupId>
+							<artifactId>jasperreports-fonts</artifactId>
+							<version>${jasperreports-fonts.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.codehaus.groovy</groupId>
+							<artifactId>groovy-all</artifactId>
+							<version>${groovy.version}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- ~~~~~~~~~~~~ DEPLOYMENT ~~~~~~~~~~ -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<distributionManagement>
+		<repository>
+			<id>Caesb</id>
+			<name>Caesb Repository</name>
+			<url>http://desenv.caesb/nexus/content/repositories/caesb/</url>
+		</repository>
+	</distributionManagement>
+	
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- ~~~~~~~~~ REPOSITORIES ~~~~~~~~~~~ -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>Caesb Public Group</id>
+			<url>http://desenv.caesb/nexus/content/groups/public/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<repositories>
+		<repository>
+			<id>Caesb Public Group</id>
+			<url>http://desenv.caesb/nexus/content/groups/public/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+</project>
