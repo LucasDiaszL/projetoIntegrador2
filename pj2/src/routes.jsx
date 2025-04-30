@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro2";
 import Home2 from "./pages/home";
 import Servico from "./pages/Servico";
+import About from "./pages/About";
 
 function AppRoutes() {
   return (
@@ -12,6 +13,7 @@ function AppRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/service" element={<Servico />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </Router>
   );
