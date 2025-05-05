@@ -4,6 +4,7 @@ import Cadastro from "./pages/Cadastro2";
 import Home2 from "./pages/home";
 import Servico from "./pages/Servico";
 import About from "./pages/About";
+import Perfil from "./pages/Perfil"
 
 function AppRoutes() {
   return (
@@ -15,6 +16,7 @@ function AppRoutes() {
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/service" element={<Servico />} />
         <Route path="/about" element={<About />} />
+        <Route path="/perfil" element={<Perfil />} />
       </Routes>
     </Router>
   );

@@ -6,36 +6,42 @@ import { FaXmark, FaBars } from "react-icons/fa6";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const [user, setUser] = useState(null); // ← novo estado
   const navigate = useNavigate();
 
-  //Função define alternancia entre o menu
-
+  // Alternar o menu
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Verifica se o usuário está logado ao montar o componente
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  // Lógica da sticky navbar
   useEffect(() => {
     const handleScroll = () => {
-      if (Window.scrollY > 100) {
+      if (window.scrollY > 100) {
         setIsSticky(true);
       } else {
         setIsSticky(false);
       }
     };
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.addEventListener("scroll", handleScroll);
-    };
-  });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { link: "Home", path: "/" },
     { link: "Service", path: "/service" },
     { link: "About", path: "/about" },
-    { link: "Hire", path: "hire" },
-    { link: "Subscribe", path: "Subscribe" },
-    { link: "FAQ", path: "faq" },
+    { link: "Hire", path: "/hire" },
+    { link: "Subscribe", path: "/subscribe" },
+    { link: "FAQ", path: "/faq" },
   ];
 
   return (
@@ -55,57 +61,60 @@ const Navbar = () => {
             <img
               src={Logo}
               alt=""
-              className="w-10 inline-block items-center "
-            ></img>
+              className="w-10 inline-block items-center"
+            />
             <span className="text-[#263238]">ServiGo</span>
           </a>
 
-          {/*itens de navegação para dispositivos grandes*/}
-
+          {/* Navegação desktop */}
           <ul className="md:flex space-x-12 hidden">
             {navItems.map(({ link, path }) => (
               <Link
                 to={path}
-                spy={true}
-                smooth={true}
-                offset={-100}
                 key={path}
-                className="block text-base  text-gray-900 hover:text-[var(--color-primary)]  first:font-medium"
+                className="block text-base text-gray-900 hover:text-[var(--color-primary)] first:font-medium"
               >
                 {link}
               </Link>
             ))}
           </ul>
 
-          {/* btn para dispostivos grandes*/}
-
-          <div className="space-x-12 hidden lg:flex items-center">
-            <a
-              href="/Login"
-              className="hidden lg:flex items-center text-[var(--color-primary)] hover:text-[var(--color-third)]"
-            >
-              Login
-            </a>
-            <button
-              onClick={() => navigate("/cadastro")}
-              className="bg-[var(--color-primary)] text-white py-2 px-4 transition-all duration-300 rounded cursor-pointer hover:bg-neutral-500"
-            >
-              Sign up
-            </button>
+          {/* Botões para desktop */}
+          <div className="space-x-4 hidden lg:flex items-center">
+            {!user && (
+              <>
+                <a
+                  href="/Login"
+                  className="text-[var(--color-primary)] hover:text-[var(--color-third)]"
+                >
+                  Login
+                </a>
+                <button
+                  onClick={() => navigate("/cadastro")}
+                  className="bg-[var(--color-primary)] text-white py-2 px-4 transition-all duration-300 rounded cursor-pointer hover:bg-neutral-500"
+                >
+                  Sign up
+                </button>
+              </>
+            )}
+            {user && (
+              <button
+                onClick={() => navigate("/perfil")}
+                className="bg-[#263238] text-white py-2 px-4 rounded hover:bg-neutral-700"
+              >
+                Perfil
+              </button>
+            )}
           </div>
 
-          {/*botão do menu para dispostiveis moveis*/}
-          <div className="md:hidden ">
-            <button></button>
-          </div>
-
+          {/* Menu mobile */}
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
-              className=" text-[var(--color-neutralDgray)] focus:outline-none focus:text-gray-500"
+              className="text-[var(--color-neutralDgray)] focus:outline-none focus:text-gray-500"
             >
               {isMenuOpen ? (
-                <FaXmark className="h6 w-6" />
+                <FaXmark className="h-6 w-6" />
               ) : (
                 <FaBars className="h-6 w-6" />
               )}
@@ -113,24 +122,46 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/*nav itens para dispostiveis moveis*/}
+        {/* Navegação mobile */}
         <div
           className={`space-y-4 px-4 mt-16 py-7 bg-[var(--color-primary)] ${
-            isMenuOpen ? "block fixed top-0 right-0 left-0" : "hidden "
+            isMenuOpen ? "block fixed top-0 right-0 left-0 z-50" : "hidden"
           }`}
         >
           {navItems.map(({ link, path }) => (
             <Link
               to={path}
-              spy={true}
-              smooth={true}
-              offset={-100}
               key={path}
-              className="block text-base  text-white hover:text-[var(--color-primary)]  first:font-medium"
+              className="block text-base text-white hover:text-[var(--color-third)] first:font-medium"
             >
               {link}
             </Link>
           ))}
+
+          {!user && (
+            <>
+              <Link
+                to="/login"
+                className="block text-white hover:text-[var(--color-third)]"
+              >
+                Login
+              </Link>
+              <Link
+                to="/cadastro"
+                className="block text-white hover:text-[var(--color-third)]"
+              >
+                Sign up
+              </Link>
+            </>
+          )}
+          {user && (
+            <Link
+              to="/perfil"
+              className="block text-white hover:text-[var(--color-third)]"
+            >
+              Perfil
+            </Link>
+          )}
         </div>
       </nav>
     </header>
