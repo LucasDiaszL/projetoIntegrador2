@@ -100,7 +100,7 @@ const Navbar = () => {
             {user && (
               <button
                 onClick={() => navigate("/perfil")}
-                className="bg-[#263238] text-white py-2 px-4 rounded hover:bg-neutral-700"
+                className="bg-[var(--color-primary)] text-white py-2 px-4 transition-all duration-300 rounded cursor-pointer hover:bg-neutral-500"
               >
                 Perfil
               </button>
