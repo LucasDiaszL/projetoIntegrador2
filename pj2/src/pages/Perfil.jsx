@@ -43,6 +43,15 @@ const Profile = () => {
             </div>
           )}
 
+          <div className="flex left-0 justify-center mb-4">
+            <button
+              onClick={() => navigate("/editarperfil")}
+              className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition-all"
+            >
+              Editar Perfil
+            </button>
+          </div>  
+
           <div className="flex justify-center">
             <button
               onClick={handleLogout}

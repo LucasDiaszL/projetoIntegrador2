@@ -5,6 +5,7 @@ import Home2 from "./pages/home";
 import Servico from "./pages/Servico";
 import About from "./pages/About";
 import Perfil from "./pages/Perfil"
+import EditarPerfil from "./pages/EditarPerfil";
 
 function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ function AppRoutes() {
         <Route path="/service" element={<Servico />} />
         <Route path="/about" element={<About />} />
         <Route path="/perfil" element={<Perfil />} />
+        <Route path="/editarperfil" element={<EditarPerfil />} />
       </Routes>
     </Router>
   );
