@@ -57,7 +57,7 @@ function Login() {
       
       // Redirecionar para a página principal
       setTimeout(() => {
-        navigate("/home");
+        navigate("/");
       }, 1000);
       
     } catch (error) {
