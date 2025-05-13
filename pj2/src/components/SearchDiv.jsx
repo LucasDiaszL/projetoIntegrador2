@@ -1,6 +1,8 @@
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { BsHouseDoor } from "react-icons/bs";
+import { CiLocationOn } from "react-icons/ci";
 
 const SearchDiv = () => {
   return (
@@ -20,23 +22,26 @@ const SearchDiv = () => {
             <AiOutlineCloseCircle className="text-[30px] text-[#a5a6a6] hover:text-[var(--color-primary)] icon" />
           </div>
           <div className="flex gap-2 items-center :">
-            <AiOutlineSearch className="text-[25px] icon" />
+            <BsHouseDoor className="text-[25px] icon" />
             <input
               type="text"
               className="bg-transparent text-[var(--color-primary)] focus:outline-none w-[100%]"
-              placeholder="Pesquise o servico"
+              placeholder="Pesquise a compania ..."
             />
             <AiOutlineCloseCircle className="text-[30px] text-[#a5a6a6] hover:text-[var(--color-primary)] icon" />
           </div>
           <div className="flex gap-2 items-center :">
-            <AiOutlineSearch className="text-[25px] icon" />
+            <CiLocationOn className="text-[25px] icon" />
             <input
               type="text"
               className="bg-transparent text-[var(--color-primary)] focus:outline-none w-[100%]"
-              placeholder="Pesquise o servico"
+              placeholder="Pesquise a localizacão"
             />
             <AiOutlineCloseCircle className="text-[30px] text-[#a5a6a6] hover:text-[var(--color-primary)] icon" />
           </div>
+
+          <button className="bg-[var(--color-primary)] h-full p-5 px-10 rounded-[10px] text-white cursor-pointer   hover:bg-neutral-500">Pesquisar</button>
+
         </div>
       </form>
     </div>
