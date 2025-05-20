@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/caixa-de-ferramentas.png";
+import DefaultUserImage from "../assets/default-user.png";
 import { FaXmark, FaBars } from "react-icons/fa6";
 
 const Navbar = () => {
@@ -47,11 +48,10 @@ const Navbar = () => {
   return (
     <header className="w-full bg-white md:bg-transparent top-0 left-0 right-0">
       <nav
-        className={`py-4 lg:px-14 px-4 ${
-          isSticky
+        className={`py-4 lg:px-14 px-4 ${isSticky
             ? "sticky top-0 left-0 right-0 border-b bg-white duration-300"
             : ""
-        }`}
+          }`}
       >
         <div className="flex justify-between items-center text-base gap-8">
           <a
@@ -98,12 +98,12 @@ const Navbar = () => {
               </>
             )}
             {user && (
-              <button
+              <img
+                src={user.avatar ? user.avatar : DefaultUserImage}
+                alt="Perfil do usuário"
                 onClick={() => navigate("/perfil")}
-                className="bg-[var(--color-primary)] text-white py-2 px-4 transition-all duration-300 rounded cursor-pointer hover:bg-neutral-500"
-              >
-                Perfil
-              </button>
+                className="w-13 h-13 rounded-full object-cover cursor-pointer border-2 border-[var(--color-primary)] hover:opacity-80 transition"
+              />
             )}
           </div>
 
@@ -124,9 +124,8 @@ const Navbar = () => {
 
         {/* Navegação mobile */}
         <div
-          className={`space-y-4 px-4 mt-16 py-7 bg-[var(--color-primary)] ${
-            isMenuOpen ? "block fixed top-0 right-0 left-0 z-50" : "hidden"
-          }`}
+          className={`space-y-4 px-4 mt-16 py-7 bg-[var(--color-primary)] ${isMenuOpen ? "block fixed top-0 right-0 left-0 z-50" : "hidden"
+            }`}
         >
           {navItems.map(({ link, path }) => (
             <Link
