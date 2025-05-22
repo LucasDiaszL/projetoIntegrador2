@@ -3,9 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../supabase";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { IMaskInput } from 'react-imask';
+import { IMaskInput } from "react-imask";
 import * as yup from "yup";
-import bcrypt from 'bcryptjs';
+import bcrypt from "bcryptjs";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -23,31 +23,44 @@ const clienteSchema = yup.object().shape({
     .string()
     .required("Senha é obrigatória")
     .min(6, "Senha deve ter pelo menos 6 caracteres"),
-  // outros campos...
+  endereco: yup.string().optional(),
+  tipo_usuario: yup
+    .string()
+    .required("Tipo de usuário é obrigatório")
+    .oneOf(["cliente", "prestador"], "Tipo de usuário inválido"),
 });
 
 function Cadastro() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ type: "", text: "" });
-  const [cpf, setCpf] = useState('');
-  const [cnpj, setCnpj] = useState('');
-  const [telefone, setTelefone] = useState('');
+  const [cpf, setCpf] = useState("");
+  const [cnpj, setCnpj] = useState("");
+  const [telefone, setTelefone] = useState("");
 
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(clienteSchema),
     defaultValues: {
-      // valores iniciais...
-    }
+      tipo_usuario: "",
+    },
   });
 
   const onSubmit = async (data) => {
     try {
       setLoading(true);
+
+      // Proteção contra tentativa de cadastrar como admin
+      if (data.tipo_usuario === "admin") {
+        setMessage({
+          type: "error",
+          text: "Não é possível cadastrar um administrador por este formulário.",
+        });
+        return;
+      }
 
       // Verificar email duplicado
       const { data: existingUser, error: checkError } = await supabase
@@ -63,33 +76,34 @@ function Cadastro() {
       if (existingUser) {
         setMessage({
           type: "error",
-          text: "Este email já está cadastrado"
+          text: "Este email já está cadastrado",
         });
         return;
       }
 
-      // Criptografar a senha antes de salvar
+      // Criptografar a senha
       const salt = await bcrypt.genSalt(10);
       const senhaHash = await bcrypt.hash(data.senha, salt);
 
-      // Inserir cliente com senha criptografada
+      // Inserir cliente/prestador
       const { error } = await supabase.from("clientes").insert([
         {
           nome: data.nome,
           email: data.email,
-          senha: senhaHash, // Senha criptografada
-          cpf: cpf.replace(/\D/g, '') || null,
-          cnpj: cnpj.replace(/\D/g, '') || null,
-          telefone: telefone.replace(/\D/g, '') || null,
-          endereco: data.endereco || null
-        }
+          senha: senhaHash,
+          cpf: cpf.replace(/\D/g, "") || null,
+          cnpj: cnpj.replace(/\D/g, "") || null,
+          telefone: telefone.replace(/\D/g, "") || null,
+          endereco: data.endereco || null,
+          tipo_usuario: data.tipo_usuario, // novo campo
+        },
       ]);
 
       if (error) throw error;
 
       setMessage({
         type: "success",
-        text: "Cadastro realizado com sucesso!"
+        text: "Cadastro realizado com sucesso!",
       });
 
       setTimeout(() => {
@@ -99,7 +113,7 @@ function Cadastro() {
       console.error("Erro ao cadastrar:", error);
       setMessage({
         type: "error",
-        text: `Erro ao cadastrar: ${error.message}`
+        text: `Erro ao cadastrar: ${error.message}`,
       });
     } finally {
       setLoading(false);
@@ -119,11 +133,12 @@ function Cadastro() {
         <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-md bg-white p-6 rounded-lg shadow">
           {message.text && (
             <div
-              className={`mb-4 p-3 rounded-md ${message.type === "success"
+              className={`mb-4 p-3 rounded-md ${
+                message.type === "success"
                   ? "bg-green-100 text-green-700"
                   : "bg-red-100 text-red-700"
-                }`}
-                >
+              }`}
+            >
               {message.text}
             </div>
           )}
@@ -138,7 +153,8 @@ function Cadastro() {
                 type="text"
                 placeholder="Digite seu nome completo"
                 {...register("nome")}
-                className={`block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline ${errors.nome ? "outline-red-500" : "outline-gray-300"
+                className={`block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline ${
+                  errors.nome ? "outline-red-500" : "outline-gray-300"
                 } placeholder-gray-400 focus:outline-[#494D7E]`}
               />
               {errors.nome && (
@@ -155,8 +171,9 @@ function Cadastro() {
                 type="email"
                 placeholder="digiteseuemail@gmail.com"
                 {...register("email")}
-                className={`block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline ${errors.email ? "outline-red-500" : "outline-gray-300"
-                  } placeholder-gray-400 focus:outline-[#494D7E]`}
+                className={`block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline ${
+                  errors.email ? "outline-red-500" : "outline-gray-300"
+                } placeholder-gray-400 focus:outline-[#494D7E]`}
               />
               {errors.email && (
                 <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
@@ -170,10 +187,11 @@ function Cadastro() {
               </label>
               <input
                 type="password"
-                placeholder="Digite uma senha com no mínimo 8 caracteres"
+                placeholder="Digite uma senha com no mínimo 6 caracteres"
                 {...register("senha")}
-                className={`block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline ${errors.senha ? "outline-red-500" : "outline-gray-300"
-                  } placeholder-gray-400 focus:outline-[#494D7E]`}
+                className={`block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline ${
+                  errors.senha ? "outline-red-500" : "outline-gray-300"
+                } placeholder-gray-400 focus:outline-[#494D7E]`}
               />
               {errors.senha && (
                 <p className="mt-1 text-sm text-red-600">{errors.senha.message}</p>
@@ -189,11 +207,32 @@ function Cadastro() {
                 type="text"
                 placeholder="Digite seu endereço completo"
                 {...register("endereco")}
-                className={`block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline ${errors.endereco ? "outline-red-500" : "outline-gray-300"
-                  } placeholder-gray-400 focus:outline-[#494D7E]`}
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline outline-gray-300 placeholder-gray-400 focus:outline-[#494D7E]"
               />
-              {errors.endereco && (
-                <p className="mt-1 text-sm text-red-600">{errors.endereco.message}</p>
+            </div>
+
+            {/* Tipo de Usuário */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Tipo de usuário
+              </label>
+              <select
+                {...register("tipo_usuario")}
+                defaultValue=""
+                className={`block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline ${
+                  errors.tipo_usuario ? "outline-red-500" : "outline-gray-300"
+                } focus:outline-[#494D7E]`}
+              >
+                <option value="" disabled>
+                  Selecione
+                </option>
+                <option value="cliente">Cliente</option>
+                <option value="prestador">Prestador de serviço</option>
+              </select>
+              {errors.tipo_usuario && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.tipo_usuario.message}
+                </p>
               )}
             </div>
 
@@ -209,12 +248,8 @@ function Cadastro() {
                 onAccept={(value) => setCpf(value)}
                 maxLength="14"
                 placeholder="000.000.000-00"
-                className={`block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline ${errors.cpf ? "outline-red-500" : "outline-gray-300"
-                  } placeholder-gray-400 focus:outline-[#494D7E]`}
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline outline-gray-300 placeholder-gray-400 focus:outline-[#494D7E]"
               />
-              {errors.cpf && (
-                <p className="mt-1 text-sm text-red-600">{errors.cpf.message}</p>
-              )}
             </div>
 
             {/* CNPJ */}
@@ -229,12 +264,8 @@ function Cadastro() {
                 onAccept={(value) => setCnpj(value)}
                 maxLength="18"
                 placeholder="00.000.000/0000-00"
-                className={`block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline ${errors.cnpj ? "outline-red-500" : "outline-gray-300"
-                  } placeholder-gray-400 focus:outline-[#494D7E]`}
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline outline-gray-300 placeholder-gray-400 focus:outline-[#494D7E]"
               />
-              {errors.cnpj && (
-                <p className="mt-1 text-sm text-red-600">{errors.cnpj.message}</p>
-              )}
             </div>
 
             {/* Telefone */}
@@ -249,15 +280,11 @@ function Cadastro() {
                 onAccept={(value) => setTelefone(value)}
                 maxLength="15"
                 placeholder="(00) 00000-0000"
-                className={`block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline ${errors.telefone ? "outline-red-500" : "outline-gray-300"
-                  } placeholder-gray-400 focus:outline-[#494D7E]`}
+                className="block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline outline-gray-300 placeholder-gray-400 focus:outline-[#494D7E]"
               />
-              {errors.telefone && (
-                <p className="mt-1 text-sm text-red-600">{errors.telefone.message}</p>
-              )}
             </div>
 
-            {/* Botão de Cadastro */}
+            {/* Botão */}
             <div>
               <button
                 type="submit"
