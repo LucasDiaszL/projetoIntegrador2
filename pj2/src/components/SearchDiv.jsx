@@ -15,10 +15,9 @@ const SearchDiv = ({
   onClearLocalizacao,
 }) => {
   return (
-    <div className="searchDiv grid gp-10 bg-[var(--color-neutralSilver)] rounded-[10px] p-[3rem] ">
+    <div className="searchDiv grid gap-10 bg-[var(--color-neutralSilver)] rounded-[10px] p-[3rem] ">
       <form action="">
         <div className="firstDiv flex justify-between items-center rounded-[8px] gap-[10px] bg-white p-5 shadow-lg shadow-greyIsh-700 ">
-          
           {/* SERVIÇO */}
           <div className="flex gap-2 items-center w-full">
             <AiOutlineSearch className="text-[25px] icon" />
@@ -81,6 +80,67 @@ const SearchDiv = ({
           </button>
         </div>
       </form>
+
+      <div
+        className="secDiv flex items-center gap-10 justify-center
+      "
+      >
+        <div className="singleSearch flex items-center gap-2 ">
+          <label htmlFor="relevance" className="text-[#808080] font-semibold">
+            Relevancia:
+          </label>
+
+          <select
+            name=""
+            id="relevance"
+            className="bg-white rounded-[3px] px-4 py-1 "
+          >
+            <option value="relevancia">Relevância</option>
+            <option value="mais-vendidos">Mais vendidos</option>
+            <option value="menor-preco">Menor preço</option>
+            <option value="maior-preco">Maior preço</option>
+            <option value="novidades">Novidades</option>
+            <option value="melhor-avaliados">Melhor avaliados</option>
+          </select>
+        </div>
+
+        <div className="singleSearch flex items-center gap-2 ">
+          <label htmlFor="type" className="text-[#808080] font-semibold">
+            Tipo:
+          </label>
+
+          <select
+            name=""
+            id="relevance"
+            className="bg-white rounded-[3px] px-4 py-1 "
+          >
+            <option value="todos">Todos</option>
+            <option value="servico">Serviço</option>
+            <option value="produto">Produto</option>
+            <option value="plano">Plano</option>
+            <option value="consulta">Consulta</option>
+          </select>
+        </div>
+
+        <div className="singleSearch flex items-center gap-2 ">
+          <label htmlFor="level" className="text-[#808080] font-semibold">
+            Nível
+          </label>
+
+          <select
+            name=""
+            id="relevance"
+            className="bg-white rounded-[3px] px-4 py-1 "
+          >
+            <option value="todos">Todos</option>
+            <option value="basico">Básico</option>
+            <option value="intermediario">Intermediário</option>
+            <option value="avancado">Avançado</option>
+          </select>
+        </div>
+
+        <span className="text-[#a1a1a1] cursor-pointer">Clear all</span>
+      </div>
     </div>
   );
 };
