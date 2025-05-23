@@ -7,7 +7,7 @@ import { FaXmark, FaBars } from "react-icons/fa6";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-  const [user, setUser] = useState(null); // ← novo estado
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   // Alternar o menu
@@ -49,8 +49,8 @@ const Navbar = () => {
     <header className="w-full bg-white md:bg-transparent top-0 left-0 right-0">
       <nav
         className={`py-4 lg:px-14 px-4 ${isSticky
-            ? "sticky top-0 left-0 right-0 border-b bg-white duration-300"
-            : ""
+          ? "sticky top-0 left-0 right-0 border-b bg-white duration-300"
+          : ""
           }`}
       >
         <div className="flex justify-between items-center text-base gap-8">
@@ -60,7 +60,7 @@ const Navbar = () => {
           >
             <img
               src={Logo}
-              alt=""
+              alt="Logo"
               className="w-10 inline-block items-center"
             />
             <span className="text-[#263238]">ServiGo</span>
@@ -79,7 +79,7 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Botões para desktop */}
+          {/* Botões desktop */}
           <div className="space-x-4 hidden lg:flex items-center">
             {!user && (
               <>
@@ -97,13 +97,36 @@ const Navbar = () => {
                 </button>
               </>
             )}
+
             {user && (
-              <img
-                src={user.avatar ? user.avatar : DefaultUserImage}
-                alt="Perfil do usuário"
-                onClick={() => navigate("/perfil")}
-                className="w-13 h-13 rounded-full object-cover cursor-pointer border-2 border-[var(--color-primary)] hover:opacity-80 transition"
-              />
+              <>
+                <img
+                  src={user.avatar ? user.avatar : DefaultUserImage}
+                  alt="Perfil do usuário"
+                  onClick={() => navigate("/perfil")}
+                  className="w-13 h-13 rounded-full object-cover cursor-pointer border-2 border-[var(--color-primary)] hover:opacity-80 transition"
+                />
+
+                {/* Botão visível apenas para prestadores */}
+                {user?.tipo_usuario === "prestador" && (
+                  <button
+                    onClick={() => navigate("/cadastroServico")}
+                    title="Cadastrar Novo Serviço"
+                    className="group cursor-pointer outline-none hover:rotate-90 duration-300"
+                  >
+                    <svg
+                      className="stroke-teal-500 fill-none group-hover:fill-teal-200 group-active:fill-teal-600 group-active:duration-0 duration-300"
+                      viewBox="0 0 24 24"
+                      height="40px"
+                      width="40px"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path strokeWidth="1.5" d="M12 22C17.5 22 22 17.5 22 12S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10Z" />
+                      <path strokeWidth="1.5" d="M12 8v8m-4-4h8" />
+                    </svg>
+                  </button>
+                )}
+              </>
             )}
           </div>
 
@@ -153,13 +176,26 @@ const Navbar = () => {
               </Link>
             </>
           )}
+
           {user && (
-            <Link
-              to="/perfil"
-              className="block text-white hover:text-[var(--color-third)]"
-            >
-              Perfil
-            </Link>
+            <>
+              <Link
+                to="/perfil"
+                className="block text-white hover:text-[var(--color-third)]"
+              >
+                Perfil
+              </Link>
+
+              {/* Botão no menu mobile para prestadores */}
+              {user?.tipo_usuario === "prestador" && (
+                <Link
+                  to="/cadastrar-servico"
+                  className="block text-white hover:text-[var(--color-third)]"
+                >
+                  Cadastrar Serviço
+                </Link>
+              )}
+            </>
           )}
         </div>
       </nav>

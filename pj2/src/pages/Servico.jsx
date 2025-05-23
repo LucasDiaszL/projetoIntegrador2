@@ -5,6 +5,7 @@ import { supabase } from '../supabase';
 import Navbar from "../components/Navbar";
 import SearchDiv from "../components/SearchDiv";
 import Footer from "../components/Footer";
+import logo1 from '../assets/logo1.png'
 
 // import dos icons
 import { BiTimeFive } from "react-icons/bi";
@@ -71,11 +72,17 @@ function formatarDataOuHora(dataISO) {
                 </span>
               </span>
               <h6 className="text-gray-600 group-hover:text-white">
-                {servico.descricao}
+                
+                {servico.categoria}
               </h6>
-              <p className="text-sm text-gray-500 group-hover:text-white mt-2">
-                Categoria: {servico.categoria}
+              <p className="text-[13px] text-gray-500 pt-[20px] border-t-[2px] mt-[20px] group-hover:text-white ">
+                {servico.descricao}
               </p>
+
+              <div className="company flex items-center gap-2">
+                 {/*  <img src={logo1} alt="company logo" className='w-[10%]'/>*/}
+                  <span className='text-[14px] py-[1rem] block group-hover:text-white'>Nova Linus Co.</span>
+              </div>
             </div>
           ))}
         </div>

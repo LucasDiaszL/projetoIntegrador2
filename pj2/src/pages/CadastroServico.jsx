@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabase';
 import { useNavigate } from 'react-router-dom';
+import Navbar from "../components/Navbar";
+
 
 export default function CadastroServico() {
   const [nome, setNome] = useState('');
@@ -44,6 +46,8 @@ export default function CadastroServico() {
   }
 
   return (
+    <div>
+      <Navbar/>
     <div className="p-6 max-w-md mx-auto">
       <h1 className="text-2xl font-bold mb-4">Cadastro de Serviços</h1>
 
@@ -72,6 +76,7 @@ export default function CadastroServico() {
           Cadastrar
         </button>
       </form>
+    </div>
     </div>
   );
 }
