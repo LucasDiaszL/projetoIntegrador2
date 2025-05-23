@@ -56,7 +56,7 @@ function formatarDataOuHora(dataISO) {
     <>
       <Navbar />
       <SearchDiv />
-      <div>
+      <div className="max-w-4xl mx-auto px-4 py-12 min-h-[60vh] mb-20">
         <div className="jobContainer flex gap-10 justify-center flex-wrap items-center py-10">
           {servicos.map((servico) => (
             <div
