@@ -7,6 +7,9 @@ import About from "./pages/About";
 import Perfil from "./pages/Perfil"
 import EditarPerfil from "./pages/EditarPerfil";
 import CadastroServico from "./pages/CadastroServico";
+import FAQ from "./pages/Faq";
+import Hire from "./pages/Hire";
+import Subscribe from "./pages/Subscribe";
 
 function AppRoutes() {
   return (
@@ -21,6 +24,9 @@ function AppRoutes() {
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/editarperfil" element={<EditarPerfil />} />
         <Route path="/cadastroServico" element={<CadastroServico/>}/>
+        <Route path="/faq" element={<FAQ/>}/>
+        <Route path="/hire" element={<Hire/>}/>
+        <Route path="/subscribe" element={<Subscribe/>}/>
       </Routes>
     </Router>
   );

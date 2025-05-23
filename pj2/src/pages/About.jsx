@@ -2,11 +2,13 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
+
 const About = () => {
+
   return (
     <>
       <Navbar />
-      <div className="max-w-4xl mx-auto px-4 py-12 text-center">
+      <div className="max-w-4xl mx-auto px-4 py-12 min-h-[60vh] mb-20 text-center">
         <h1 className="text-4xl font-bold mb-6">Sobre Nós</h1>
         <p className="text-lg text-gray-700 mb-4">
           Nosso site é uma plataforma inovadora que conecta pessoas a prestadores de serviços de forma rápida, prática e segura.
