@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Butao from "../components/Butao";
 
 const Profile = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-  
+  const containerRef = useRef(null);
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     } else {
-      navigate("/login"); // Se não tiver usuário logado, redireciona para login
+      navigate("/login");
     }
   }, [navigate]);
 
@@ -25,7 +27,10 @@ const Profile = () => {
   return (
     <div>
       <Navbar />
-      <div className="min-h-screen flex flex-col justify-center items-center bg-[#EFEEF9] py-10">
+      <div
+        ref={containerRef}
+        className="min-h-[60vh] mb-20 flex flex-col justify-center items-center bg-[#EFEEF9] py-10 relative"
+      >
         <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
           <h2 className="text-2xl font-bold text-gray-900 text-center mb-4">Perfil</h2>
 
@@ -50,7 +55,7 @@ const Profile = () => {
             >
               Editar Perfil
             </button>
-          </div>  
+          </div>
 
           <div className="flex justify-center">
             <button
@@ -61,6 +66,7 @@ const Profile = () => {
             </button>
           </div>
         </div>
+        <Butao containerRef={containerRef} />
       </div>
       <Footer />
     </div>
