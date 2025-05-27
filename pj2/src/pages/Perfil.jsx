@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import IMask from "imask";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Butao from "../components/Butao";
@@ -24,6 +25,22 @@ const Profile = () => {
     navigate("/login");
   };
 
+  const formatarCPF = (numero) => {
+    const masked = IMask.createMask({
+      mask: "000.000.000-00"
+    });
+    masked.resolve(numero);
+    return masked.value;
+  };
+
+  const formatarTelefone = (numero) => {
+    const masked = IMask.createMask({
+      mask: "(00) 00000-0000"
+    });
+    masked.resolve(numero);
+    return masked.value;
+  };
+
   return (
     <div>
       <Navbar />
@@ -42,9 +59,9 @@ const Profile = () => {
             <div className="mb-6 space-y-2 text-sm text-gray-800">
               <p><strong>Nome:</strong> {user.nome}</p>
               <p><strong>Email:</strong> {user.email}</p>
-              <p><strong>CPF:</strong> {user.cpf}</p>
+              <p><strong>CPF:</strong> {formatarCPF(user.cpf)}</p>
               <p><strong>Endereço:</strong> {user.endereco}</p>
-              <p><strong>Telefone:</strong> {user.telefone}</p>
+              <p><strong>Telefone:</strong> {formatarTelefone(user.telefone)}</p>
             </div>
           )}
 

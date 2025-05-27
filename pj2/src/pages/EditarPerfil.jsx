@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { supabase } from "../supabase";
+import { IMaskInput } from "react-imask";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -32,12 +34,39 @@ const ProfileEdit = () => {
     }));
   };
 
+  const removeMascaraTelefone = (telefone) => {
+    return telefone.replace(/\D/g, ""); // Remove tudo que não for número
+  };
+  
   // Função salva apenas em localStorage, atualizar futuramente para alterar no banco de dados
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    localStorage.setItem("user", JSON.stringify(formData));
-    alert("Perfil atualizado com sucesso!");
-    navigate("/perfil");
+
+    if (!user?.id) {
+      alert("Usuário não identificado.");
+      return;
+    }
+
+    const telefoneSemMascara = removeMascaraTelefone(formData.telefone);
+
+    const { error } = await supabase
+      .from("clientes") // substitua pelo nome real da tabela
+      .update({
+        nome: formData.nome,
+        endereco: formData.endereco,
+        telefone: telefoneSemMascara
+      })
+      .eq("id", user.id);
+
+    if (error) {
+      console.error("Erro ao atualizar perfil:", error);
+      alert("Erro ao atualizar o perfil. Tente novamente.");
+    } else {
+      const novoUser = { ...user, ...formData, telefone: telefoneSemMascara };
+      localStorage.setItem("user", JSON.stringify(novoUser));
+      alert("Perfil atualizado com sucesso!");
+      navigate("/perfil");
+    }
   };
 
   return (
@@ -77,11 +106,13 @@ const ProfileEdit = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700">Telefone</label>
-                <input
+                <IMaskInput
+                  mask="(00) 00000-0000"
                   type="tel"
                   name="telefone"
                   value={formData.telefone}
                   onChange={handleChange}
+                  maxLength="15"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-gray-900 outline outline-gray-300 placeholder-gray-400 focus:outline-[#494D7E]"
                 />
               </div>
