@@ -33,16 +33,18 @@ export default function BotaoAjuda() {
   }, []);
 
   async function iniciarChat(userId) {
-    const { data: chatExistente, error: erroExistente } = await supabase
+    const { data: chats, error: erroExistente } = await supabase
       .from('chats')
       .select('id')
       .eq('cliente_id', userId)
-      .maybeSingle();
+      .limit(1);
 
     if (erroExistente) {
       console.error('Erro ao buscar chat:', erroExistente.message);
       return;
     }
+
+    const chatExistente = chats?.[0];
 
     if (chatExistente) {
       setChatId(chatExistente.id);

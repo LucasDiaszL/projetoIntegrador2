@@ -1,143 +1,102 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { supabase } from "../supabase";
-import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-export default function CadastroServico() {
+const CadastrarServico = () => {
   const [nome, setNome] = useState("");
   const [descricao, setDescricao] = useState("");
   const [categoria, setCategoria] = useState("");
-  const [tipo, setTipo] = useState("Part-time"); // novo estado
-  const [servicos, setServicos] = useState([]);
+  const [tipo, setTipo] = useState("Meio período");
+  const [mensagem, setMensagem] = useState("");
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    carregarServicos();
-  }, []);
-
-  async function carregarServicos() {
-    const { data, error } = await supabase.from("servicos").select("*");
-    if (!error) setServicos(data);
-  }
-
-  async function cadastrar(e) {
-    e.preventDefault();
-
+  const handleCadastrar = async () => {
     if (!nome || !descricao || !categoria || !tipo) {
-      alert("Preencha todos os campos!");
+      setMensagem("Preencha todos os campos!");
       return;
     }
 
-    const { error } = await supabase
-      .from("servicos")
-      .insert({ nome, descricao, categoria, tipo });
+    const { error } = await supabase.from("servicos").insert([
+      {
+        nome,
+        descricao,
+        categoria,
+        tipo, // novo campo aqui
+        created_at: new Date().toISOString(),
+      },
+    ]);
 
     if (error) {
-      alert("Erro ao cadastrar");
-      console.error(error);
+      console.error("Erro ao cadastrar serviço:", error);
+      setMensagem("Erro ao cadastrar serviço.");
     } else {
+      setMensagem("Serviço cadastrado com sucesso!");
       setNome("");
       setDescricao("");
       setCategoria("");
-      setTipo("Part-time");
-      navigate("/service", { state: { sucesso: true } });
+      setTipo("Meio período");
     }
-  }
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
+  <>
+    <Navbar/>
+    
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow">
+      <h2 className="text-xl font-bold mb-4">Cadastrar Serviço</h2>
 
-      <main className="p-10 max-w-4xl mx-auto">
-        <div className="bg-white p-8 rounded-xl shadow-md">
-          <h1 className="text-2xl font-bold mb-6">Cadastrar Novo Serviço</h1>
+      <label className="block mb-2">Nome do Serviço</label>
+      <input
+        type="text"
+        value={nome}
+        onChange={(e) => setNome(e.target.value)}
+        className="w-full border p-2 rounded mb-4"
+      />
 
-          <form onSubmit={cadastrar} className="space-y-6">
-            {/* Nome */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Nome do serviço
-              </label>
-              <input
-                type="text"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-                className="mt-1 w-full border border-gray-300 rounded-md p-2"
-              />
-            </div>
+      <label className="block mb-2">Descrição</label>
+      <textarea
+        value={descricao}
+        onChange={(e) => setDescricao(e.target.value)}
+        className="w-full border p-2 rounded mb-4"
+      />
 
-            {/* Descrição */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Descrição
-              </label>
-              <textarea
-                value={descricao}
-                onChange={(e) => setDescricao(e.target.value)}
-                className="mt-1 w-full border border-gray-300 rounded-md p-2"
-                rows={4}
-              />
-            </div>
+      <label className="block mb-2">Categoria</label>
+      <input
+        type="text"
+        value={categoria}
+        onChange={(e) => setCategoria(e.target.value)}
+        className="w-full border p-2 rounded mb-4"
+      />
 
-            {/* Categoria */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Categoria
-              </label>
-              <input
-                type="text"
-                value={categoria}
-                onChange={(e) => setCategoria(e.target.value)}
-                className="mt-1 w-full border border-gray-300 rounded-md p-2"
-              />
-            </div>
+      <label className="block mb-2">Tipo de Serviço</label>
+      <div className="flex gap-4 mb-4">
+        {["Meio período", "Tempo integral", "Estágio", "Contrato"].map((op) => (
+          <label key={op}>
+            <input
+              type="radio"
+              name="tipo"
+              value={op}
+              checked={tipo === op}
+              onChange={(e) => setTipo(e.target.value)}
+              className="mr-1"
+            />
+            {op}
+          </label>
+        ))}
+      </div>
 
-            {/* Tipo de serviço */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Tipo de Serviço
-              </label>
-              <div className="flex flex-wrap gap-4">
-                {[
-                  { label: "Meio período", value: "Meio período" },
-                  { label: "Tempo integral", value: "Tempo integral" },
-                  { label: "Estágio", value: "Estágio" },
-                  { label: "Contrato", value: "Contrato" },
-                ].map((opcao) => (
-                  <label
-                    key={opcao.value}
-                    className="flex items-center space-x-2"
-                  >
-                    <input
-                      type="radio"
-                      value={opcao.value}
-                      checked={tipo === opcao.value}
-                      onChange={() => setTipo(opcao.value)}
-                      className="text-orange-500"
-                    />
-                    <span className="text-gray-700">{opcao.label}</span>
-                  </label>
-                ))}
-                
-              </div>
-            </div>
+      <button
+        onClick={handleCadastrar}
+        className="w-full bg-[var(--color-primary)] text-white p-2 rounded hover:bg-blue-700"
+      >
+        Cadastrar
+      </button>
 
-            {/* Botão */}
-            <div className="text-right">
-              <button
-                type="submit"
-                className="bg-[var(--color-primary)] hover:bg-orange-600 text-white px-6 py-2 rounded-md transition"
-              >
-                Publicar Serviço
-              </button>
-            </div>
-          </form>
-        </div>
-      </main>
-
-      <Footer />
+      {mensagem && <p className="mt-4 text-center">{mensagem}</p>}
     </div>
+    <Footer></Footer>
+    </>
   );
-}
+};
+
+export default CadastrarServico;

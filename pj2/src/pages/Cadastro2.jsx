@@ -158,7 +158,9 @@ function Cadastro() {
                 } placeholder-gray-400 focus:outline-[#494D7E]`}
               />
               {errors.nome && (
-                <p className="mt-1 text-sm text-red-600">{errors.nome.message}</p>
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.nome.message}
+                </p>
               )}
             </div>
 
@@ -176,7 +178,9 @@ function Cadastro() {
                 } placeholder-gray-400 focus:outline-[#494D7E]`}
               />
               {errors.email && (
-                <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.email.message}
+                </p>
               )}
             </div>
 
@@ -194,7 +198,9 @@ function Cadastro() {
                 } placeholder-gray-400 focus:outline-[#494D7E]`}
               />
               {errors.senha && (
-                <p className="mt-1 text-sm text-red-600">{errors.senha.message}</p>
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.senha.message}
+                </p>
               )}
             </div>
 

@@ -8,32 +8,49 @@ export default function PainelSuporte() {
   const [novaMensagem, setNovaMensagem] = useState('');
   const [userId, setUserId] = useState(null);
 
+  // Buscar usuário e chats
   useEffect(() => {
     async function fetchData() {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return;
       setUserId(user.id);
 
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('chats')
-        .select('id, cliente_id, criado_em')
+        .select(`
+          id,
+          cliente_id,
+          criado_em
+        `)
+        .eq('status', 'iniciado')
         .order('criado_em', { ascending: false });
 
-      setChats(data);
+      console.log("📦 Chats recebidos:", data);
+      if (error) console.error("❌ Erro ao buscar chats:", error);
+
+      if (data?.length > 0) {
+        setChats(data);
+        if (!chatSelecionado) setChatSelecionado(data[0].id);
+      }
     }
 
     fetchData();
   }, []);
 
+  // Buscar mensagens de um chat selecionado
   useEffect(() => {
     if (!chatSelecionado) return;
 
     async function carregarMensagens() {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('mensagens')
         .select('*')
         .eq('chat_id', chatSelecionado)
         .order('criado_em', { ascending: true });
+
+      if (error) {
+        console.error("Erro ao carregar mensagens:", error);
+      }
 
       setMensagens(data);
     }
@@ -48,7 +65,7 @@ export default function PainelSuporte() {
           event: 'INSERT',
           schema: 'public',
           table: 'mensagens',
-          filter: `chat_id=eq.${chatSelecionado}`
+          filter: `chat_id=eq.${chatSelecionado}`,
         },
         (payload) => {
           setMensagens((msgs) => [...msgs, payload.new]);
@@ -61,13 +78,14 @@ export default function PainelSuporte() {
     };
   }, [chatSelecionado]);
 
+  // Enviar nova mensagem
   async function enviarMensagem() {
     if (!novaMensagem.trim() || !userId || !chatSelecionado) return;
 
     await supabase.from('mensagens').insert({
       texto: novaMensagem,
       chat_id: chatSelecionado,
-      autor_id: userId
+      autor_id: userId,
     });
 
     setNovaMensagem('');
@@ -84,10 +102,15 @@ export default function PainelSuporte() {
               key={chat.id}
               onClick={() => setChatSelecionado(chat.id)}
               className={`cursor-pointer p-2 rounded ${
-                chatSelecionado === chat.id ? 'bg-[var(--color-primary)] text-white' : 'hover:bg-gray-200'
+                chatSelecionado === chat.id
+                  ? 'bg-[var(--color-primary)] text-white'
+                  : 'hover:bg-gray-200'
               }`}
             >
-              Cliente: {chat.cliente_id.slice(0, 8)}...
+              <div className="text-sm">
+                <strong>ID:</strong> {chat.id.slice(0, 8)}<br />
+                <strong>Cliente:</strong> {chat.cliente_id.slice(0, 8)}
+              </div>
             </li>
           ))}
         </ul>
@@ -99,14 +122,19 @@ export default function PainelSuporte() {
           <>
             <div className="flex-1 overflow-y-auto border p-4 rounded bg-white shadow">
               <h3 className="text-lg font-semibold mb-4">Conversa</h3>
-              <div className="space-y-2 text-sm">
+              <div className="flex flex-col space-y-2 text-sm">
                 {mensagens.map((msg) => (
                   <div
                     key={msg.id}
-                    className={`p-2 rounded ${
-                      msg.autor_id === userId ? 'bg-[var(--color-primary)] text-white self-end' : 'bg-gray-100'
+                    className={`p-2 rounded max-w-[70%] ${
+                      msg.autor_id === userId
+                        ? 'bg-[var(--color-primary)] text-white self-end'
+                        : 'bg-gray-100 self-start'
                     }`}
                   >
+                    <span className="block text-xs text-gray-500 mb-1">
+                      {msg.autor_id === userId ? 'Suporte' : 'Cliente'}
+                    </span>
                     {msg.texto}
                   </div>
                 ))}
