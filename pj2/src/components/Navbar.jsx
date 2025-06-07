@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../assets/caixa-de-ferramentas.png";
 import DefaultUserImage from "../assets/default-user.png";
 import { FaXmark, FaBars } from "react-icons/fa6";
@@ -9,6 +9,7 @@ const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Alternar o menu
   const toggleMenu = () => {
@@ -72,7 +73,8 @@ const Navbar = () => {
               <Link
                 to={path}
                 key={path}
-                className="block text-base text-gray-900 hover:text-[var(--color-primary)] first:font-medium"
+                className={`block text-base text-gray-900 hover:text-[var(--color-primary)] ${location.pathname === path ? "font-medium" : "font-normal"
+                  }`}
               >
                 {link}
               </Link>
@@ -154,7 +156,8 @@ const Navbar = () => {
             <Link
               to={path}
               key={path}
-              className="block text-base text-white hover:text-[var(--color-third)] first:font-medium"
+              className={`block text-base text-white hover:text-[var(--color-third)] ${location.pathname === path ? "font-medium" : "font-normal"
+                }`}
             >
               {link}
             </Link>
