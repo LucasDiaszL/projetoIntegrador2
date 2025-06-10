@@ -41,7 +41,7 @@ const Navbar = () => {
     { link: "Home", path: "/" },
     { link: "Service", path: "/service" },
     { link: "About", path: "/about" },
-    { link: "Hire", path: "/hire" },
+    { link: "RefundPolicy", path: "/hire" },
     { link: "Subscribe", path: "/subscribe" },
     { link: "FAQ", path: "/faq" },
   ];
