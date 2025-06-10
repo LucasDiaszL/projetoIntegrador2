@@ -9,7 +9,6 @@ import EditarPerfil from "./pages/EditarPerfil";
 import CadastroServico from "./pages/CadastroServico";
 import FAQ from "./pages/Faq";
 import Hire from "./pages/Hire";
-import Subscribe from "./pages/Subscribe";
 import BotaoAjuda from './components/BotaoAjuda';
 import Suporte from './components/painelSuporte';
 import Termos from './pages/TermsAndConditions';
@@ -29,7 +28,6 @@ function AppRoutes() {
         <Route path="/cadastroServico" element={<CadastroServico/>}/>
         <Route path="/faq" element={<FAQ/>}/>
         <Route path="/hire" element={<Hire/>}/>
-        <Route path="/subscribe" element={<Subscribe/>}/>
         <Route path="/suporte" element={<Suporte/>}/>
         <Route path="/Termos" element={<Termos/>}/>
         

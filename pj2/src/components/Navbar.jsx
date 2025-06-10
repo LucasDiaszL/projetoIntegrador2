@@ -42,7 +42,6 @@ const Navbar = () => {
     { link: "Service", path: "/service" },
     { link: "About", path: "/about" },
     { link: "RefundPolicy", path: "/hire" },
-    { link: "Subscribe", path: "/subscribe" },
     { link: "FAQ", path: "/faq" },
   ];
 

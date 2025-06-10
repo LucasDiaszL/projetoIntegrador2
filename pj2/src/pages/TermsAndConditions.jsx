@@ -7,35 +7,50 @@ const TermsAndConditions = () => {
         <>
             <Navbar />
             <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-2xl mt-10">
-                <h1 className="text-3xl font-bold text-gray-800 mb-4">Termos e Condições</h1>
+                <h1 className="text-3xl font-bold text-gray-800 mb-4">Termos e Condições de Uso — ServiGo</h1>
 
                 <p className="text-gray-700 mb-4">
-                    Ao utilizar nossos serviços, você concorda com os seguintes termos e condições. Recomendamos que leia com atenção.
+                    Bem-vindo ao <strong>ServiGo</strong>, uma plataforma digital que conecta clientes a prestadores de serviços de forma geolocalizada, rápida e eficiente. Ao utilizar o ServiGo, você concorda com os termos descritos a seguir.
                 </p>
 
-                <h2 className="text-xl font-semibold text-gray-800 mt-6 mb-2">1. Uso dos Serviços</h2>
+                <h2 className="text-xl font-semibold text-gray-800 mt-6 mb-2">1. Aceitação dos Termos</h2>
                 <p className="text-gray-700 mb-4">
-                    O uso dos nossos serviços é permitido apenas para fins legais e conforme as normas estabelecidas. Qualquer uso indevido poderá resultar na suspensão do serviço.
+                    O uso do aplicativo ServiGo implica na aceitação integral destes termos. Caso não concorde com alguma das cláusulas, recomendamos que não utilize nossos serviços.
                 </p>
 
-                <h2 className="text-xl font-semibold text-gray-800 mt-6 mb-2">2. Responsabilidades do Usuário</h2>
+                <h2 className="text-xl font-semibold text-gray-800 mt-6 mb-2">2. Cadastro e Autenticação</h2>
                 <p className="text-gray-700 mb-4">
-                    O usuário é responsável por fornecer informações verídicas e manter a confidencialidade dos seus dados de acesso. Qualquer atividade realizada com sua conta será de sua responsabilidade.
+                    Para acessar os recursos do ServiGo, o usuário deve criar uma conta autenticada via Supabase, fornecendo informações verdadeiras. O uso indevido de dados pode acarretar suspensão ou exclusão da conta.
                 </p>
 
-                <h2 className="text-xl font-semibold text-gray-800 mt-6 mb-2">3. Política de Cancelamento e Reembolso</h2>
+                <h2 className="text-xl font-semibold text-gray-800 mt-6 mb-2">3. Serviços Oferecidos</h2>
                 <p className="text-gray-700 mb-4">
-                    Cancelamentos e reembolsos estão sujeitos à nossa <a href="/hire" className="text-blue-600 hover:underline">Política de Reembolso</a>. Leia-a atentamente antes de efetuar qualquer solicitação.
+                    O ServiGo oferece funcionalidades como busca de prestadores com base na localização, agendamento de atendimentos, chat integrado e sistema de avaliações. A plataforma atua como intermediadora, não se responsabilizando pela execução dos serviços contratados.
                 </p>
 
-                <h2 className="text-xl font-semibold text-gray-800 mt-6 mb-2">4. Modificações</h2>
+                <h2 className="text-xl font-semibold text-gray-800 mt-6 mb-2">4. Regras para Prestadores e Clientes</h2>
                 <p className="text-gray-700 mb-4">
-                    Reservamo-nos o direito de modificar estes termos a qualquer momento. Recomendamos verificar esta página regularmente para se manter atualizado.
+                    Ambas as partes devem manter conduta ética e respeitosa. Prestadores devem cumprir os serviços agendados com pontualidade e qualidade. Clientes devem fornecer informações corretas e comparecer aos compromissos agendados.
                 </p>
 
-                <h2 className="text-xl font-semibold text-gray-800 mt-6 mb-2">5. Contato</h2>
+                <h2 className="text-xl font-semibold text-gray-800 mt-6 mb-2">5. Cancelamentos e Reembolsos</h2>
                 <p className="text-gray-700 mb-4">
-                    Em caso de dúvidas sobre nossos termos, entre em contato pelo nosso canal de <a href="/suporte" className="text-blue-600 hover:underline">suporte</a>.
+                    Cancelamentos devem ser realizados com no mínimo 24h de antecedência. Para mais informações, consulte nossa <a href="/hire" className="text-blue-600 hover:underline">Política de Reembolso</a>.
+                </p>
+
+                <h2 className="text-xl font-semibold text-gray-800 mt-6 mb-2">6. Privacidade e Notificações</h2>
+                <p className="text-gray-700 mb-4">
+                    O ServiGo utiliza notificações em tempo real e coleta dados de localização para melhorar sua experiência. Os dados são tratados conforme nossa política de privacidade.
+                </p>
+
+                <h2 className="text-xl font-semibold text-gray-800 mt-6 mb-2">7. Atualizações dos Termos</h2>
+                <p className="text-gray-700 mb-4">
+                    Estes termos podem ser atualizados periodicamente. Recomendamos que revise esta página regularmente.
+                </p>
+
+                <h2 className="text-xl font-semibold text-gray-800 mt-6 mb-2">8. Contato</h2>
+                <p className="text-gray-700 mb-4">
+                    Dúvidas ou sugestões? Entre em contato através da nossa página de <a href="/suporte" className="text-blue-600 hover:underline">Suporte</a>.
                 </p>
             </div>
             <Footer />
