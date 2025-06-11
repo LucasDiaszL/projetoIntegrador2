@@ -39,9 +39,10 @@ const Navbar = () => {
 
   const navItems = [
     { link: "Home", path: "/" },
-    { link: "Service", path: "/service" },
-    { link: "About", path: "/about" },
-    { link: "RefundPolicy", path: "/hire" },
+    { link: "Serviços", path: "/service" },
+    // { link: "About", path: "/about" },
+    { link: "Política de Reembolso", path: "/hire" },
+    { link: "Termos e Condições", path: "/Termos" },
     { link: "FAQ", path: "/faq" },
   ];
 
