@@ -70,7 +70,7 @@ const CadastrarServico = () => {
 
       <label className="block mb-2">Tipo de Serviço</label>
       <div className="flex gap-4 mb-4">
-        {["Meio período", "Tempo integral", "Estágio", "Contrato"].map((op) => (
+        {["Meio período", "Tempo integral", "Contrato"].map((op) => (
           <label key={op}>
             <input
               type="radio"
