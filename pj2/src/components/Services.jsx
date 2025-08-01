@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 // Import icones
 import { BsTools, BsLaptop, BsGraphUpArrow, BsBricks, BsFileEarmarkText, BsTruck, BsHeartPulse } from "react-icons/bs";
+import {GiGlock} from "react-icons/gi";
 
 
 
@@ -64,6 +65,10 @@ const Services = () => {
           <div className="flex flex-col items-center min-w-[100px]">
             <BsHeartPulse className="text-5xl mb-2" aria-label="Saúde" />
             <span className="text-sm font-medium">Saúde</span>
+          </div>
+          <div className="flex flex-col items-center min-w-[100px]">
+            <GiGlock className="text-5xl mb-2" aria-label="Saúde" />
+            <span className="text-sm font-medium">Sumiço</span>
           </div>
         </div>
       </div>
